@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "868295233623",
+    "firebase_url": "https://orangeshare-73ba6.firebaseio.com",
+    "project_id": "orangeshare-73ba6",
+    "storage_bucket": "orangeshare-73ba6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868295233623:android:8e84bdbdba2115be",
+        "android_client_info": {
+          "package_name": "cis400.orangeshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868295233623-9qegs4hj79f394hu5ptradhrovj9ne7d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cis400.orangeshare",
+            "certificate_hash": "29bc546070058878a52db4e5d0049c09575b83bf"
+          }
+        },
+        {
+          "client_id": "868295233623-dslb2us24sn44vjfff1imotmm6j4nqmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6aRvnUTK5_ucSnszitiTmQ1wlsE8bU_E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868295233623-dslb2us24sn44vjfff1imotmm6j4nqmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
