@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cis400.orangeshare.CreatePostActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:background="@color/orange_primary"
+            android:elevation="6dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Create an Event"
+                android:textColor="@android:color/white" />
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Title:"
+        android:layout_below="@id/appbar"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/create_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_title"
+        android:backgroundTint="@color/blue_primary"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:hint="Title of Event"
+        android:inputType="textShortMessage"
+        android:textColor="@color/orange_primary"
+        android:textCursorDrawable="@null" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/create_title"
+        android:text="Date:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/create_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_below="@id/tv_date"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/blue_primary"
+        android:hint="e.g. September 29, 2017"
+        android:textColor="@color/orange_primary"
+        android:scrollHorizontally="true"
+        android:textCursorDrawable="@null" />
+
+    <TextView
+        android:id="@+id/tv_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/create_date"
+        android:text="Details:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/create_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_details"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/blue_primary"
+        android:hint="Enter Time, Requests, Meals, etc."
+        android:inputType="textMultiLine"
+        android:maxLines="6"
+        android:scrollHorizontally="false"
+        android:textColor="@color/orange_primary"
+        android:textCursorDrawable="@null" />
+
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/tv_details"
+        android:layout_marginTop="160dp"
+        android:text="Address:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/address_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="60dp"
+        android:layout_below="@id/tv_address"
+        android:layout_marginTop="5dp"
+        android:maxLines="2"
+        android:text="305 Waverly Ave in Syracuse New York"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_change_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="46dp"
+        android:layout_below="@id/tv_address"
+        android:layout_marginTop="32dp"
+        android:background="@null"
+        android:text="Change Address"
+        android:textColor="@color/blue_primary" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_submit_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_navigation_check_24"
+        app:backgroundTint="@color/blue_primary" />
+
+</RelativeLayout>

@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="cis400.orangeshare.CreateReviewFragment">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Title:"
+        android:layout_below="@id/appbar"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/create_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_title"
+        android:backgroundTint="@color/blue_primary"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:hint="Title of Review"
+        android:inputType="textShortMessage"
+        android:textColor="@color/orange_primary"
+        android:textCursorDrawable="@null" />
+
+    <TextView
+        android:id="@+id/tv_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/create_title"
+        android:text="Details:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/create_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_details"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/blue_primary"
+        android:hint="Enter Likes, Dislikes, etc"
+        android:inputType="textMultiLine"
+        android:maxLines="6"
+        android:scrollHorizontally="false"
+        android:textColor="@color/orange_primary"
+        android:textCursorDrawable="@null" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+    </RadioGroup>
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_submit_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_navigation_check_24"
+        app:backgroundTint="@color/blue_primary" />
+
+</RelativeLayout>

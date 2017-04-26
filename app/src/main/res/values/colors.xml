@@ -29,4 +29,14 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
+    <color name="orange_primary">#f1651d</color>
+    <color name="orange_dark">#b73400</color>
+    <color name="orange_light">#fea360</color>
+    
+    <color name="blue_dark">#0a97b7</color>
+    <color name="blue_primary">#55cfd6</color>
+    <color name="blue_light">#8dffff</color>
+
+    <color name="background_offwhite">#fceebf</color>
 </resources>

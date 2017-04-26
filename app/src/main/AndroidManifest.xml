@@ -7,18 +7,20 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <application
+    <application xmlns:tools="http://schemas.android.com/tools"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/OrangeShareTheme"
+        tools:replace="android:allowBackup">
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".LoginActivity"
             android:label="Login"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/OrangeShareTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,10 +30,23 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/OrangeShareTheme" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".WelcomeActivity"
             android:label="Login"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/OrangeShareTheme" />
+        <activity android:name=".CreatePostActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".MapsActivity" />
+        <activity android:name=".PostDetailActivity" />
+        <activity android:name=".MapsViewActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".YoutubeActivity" />
+        <activity android:name=".ReviewActivity"></activity>
     </application>
+
 </manifest>

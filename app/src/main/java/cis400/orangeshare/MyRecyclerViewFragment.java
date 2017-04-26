@@ -6,60 +6,35 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.location.LocationRequest;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MyRecyclerViewFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MyRecyclerViewFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MyRecyclerViewFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.HashMap;
+import java.util.Map;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-   // private OnFragmentInteractionListener mListener;
+// This file is abstract so that we do not have to create the same file over and over with
+// different database queries. Each viewpager tab does the same thing
+// (which is display a recyclerview) so instead of implementing the same thing 3 times,
+// this abstract class is used and each other fragment implements its own database query
+public abstract class MyRecyclerViewFragment extends Fragment {
+
+    DatabaseReference mDatabase;
+    RecyclerView mRecyclerView;
+    LinearLayoutManager mLayoutManager;
+    MyFirebaseRecyclerViewAdapter mFirebaseRecyclerViewAdapter;
+
+     private OnFragmentInteractionListener mListener;
 
     public MyRecyclerViewFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MyRecyclerViewFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MyRecyclerViewFragment newInstance(String param1, String param2) {
-        MyRecyclerViewFragment fragment = new MyRecyclerViewFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -68,53 +43,56 @@ public class MyRecyclerViewFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_my_recycler_view, container, false);
 
-        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
-        rv.setHasFixedSize(true);
-        MyRecyclerViewAdapter adapter = new MyRecyclerViewAdapter(new String[]{"test one", "test two", "test three", "test four", "test five", "test six", "test seven"});
-        rv.setAdapter(adapter);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);                    // sets recyclerview
+        mRecyclerView.setHasFixedSize(true);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
+        mLayoutManager = new LinearLayoutManager(getActivity());                                        // sets layout style
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();                                      // sets query type: NEARBY, MINE, FAVORITES
+        Query postsQuery = getQuery(mDatabase);
+
+        mFirebaseRecyclerViewAdapter = new MyFirebaseRecyclerViewAdapter(Post.class, R.layout.card_view,    // initializes adapter and sets it with rv
+                MyFirebaseRecyclerViewAdapter.PostViewHolder.class, postsQuery, getContext());
+        mRecyclerView.setAdapter(mFirebaseRecyclerViewAdapter);
+
+        mFirebaseRecyclerViewAdapter.setOnItemClickListener(new MyFirebaseRecyclerViewAdapter.onItemClickListener() {
+            @Override
+            public void onListItemSelected(View v, int position, String postId) {
+                mListener.onListItemClick(postId);
+                Log.d("RV Fragment", "Fragment received click");
+            }
+        });
+
 
         return rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-  //      mListener = null;
+              mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
+
+    public interface OnFragmentInteractionListener {
+        void onListItemClick(String postId);
+    }
+
+    public String getUid() {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
+    public abstract Query getQuery(DatabaseReference databaseReference);                                // abstract method
 }

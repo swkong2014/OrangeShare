@@ -1,0 +1,99 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingEnd="10dp"
+            android:paddingStart="40dp"
+            android:paddingTop="10dp"
+            android:id="@+id/relative_container"
+            tools:context="cis400.orangeshare.PostDetailFragment">
+
+            <TextView
+                android:id="@+id/detail_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Author"
+                android:textColor="@color/authui_inputTextColorDark"
+                android:textIsSelectable="true"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/detail_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_author"
+                android:layout_marginTop="10dp"
+                android:text="Date"
+                android:textIsSelectable="true"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/detail_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_date"
+                android:layout_marginTop="10dp"
+                android:text="Address"
+                android:textIsSelectable="true"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_address"
+                android:layout_marginTop="10dp"
+                android:text="Title"
+                android:textColor="@color/authui_inputTextColorDark"
+                android:textIsSelectable="true"
+                android:textSize="30sp" />
+
+            <View
+                android:id="@+id/detail_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/detail_title"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="3dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/detail_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_line"
+                android:layout_marginTop="10dp"
+                android:text="Info"
+                android:textIsSelectable="true"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <ToggleButton
+            android:id="@+id/detail_btn_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/relative_container"
+            android:text="Favorite">
+
+        </ToggleButton>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>
+
+
+

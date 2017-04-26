@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_map_two"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+
+    tools:context="cis400.orangeshare.MapsActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/map_top_tv"
+        android:text="@string/map_click_text"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"/>
+    <fragment
+        android:id="@+id/maptwo"
+        android:layout_below="@id/map_top_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_marginBottom="50dp"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_map_bottom"
+        android:text="Click to confirm location"
+
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

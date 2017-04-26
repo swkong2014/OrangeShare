@@ -1,6 +1,7 @@
 package cis400.orangeshare;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -22,8 +24,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.vision.text.Text;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        MyRecyclerViewFragment.OnFragmentInteractionListener {
+
+    private final static String TAG = "MainActivity";
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +51,17 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);                                         // set toolbar
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);                       // TODO: SET FAB TO CREATE POST
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        TextView tTitle = (TextView) findViewById(R.id.toolbar_title);
+        tTitle.setText("OrangeShare");
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);                                           // set fab to launch CreatePostActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -51,30 +74,22 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content, new ViewPagerFragment())
+                .addToBackStack(null)
+                .commit();
 
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);                                 // Link ViewPager and PagerAdapter
-        PagerAdapter pagerAdapter =
-                new PagerAdapter(getSupportFragmentManager(), MainActivity.this);
-        viewPager.setAdapter(pagerAdapter);
-        viewPager.setCurrentItem(1);
-
-        // Give the TabLayout the ViewPager
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);                                // Set tablayout
-        tabLayout.setupWithViewPager(viewPager);
-
-
-        // Iterate over all tabs and set the custom view
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            tab.setCustomView(pagerAdapter.getTabView(i));
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();                                // for debugging: logs the user ID
+        if (user != null) {
+            String uid = user.getUid();
+            Log.d(TAG, "current user: " + uid);
         }
 
 
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() {                                                                       // closes drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -84,25 +99,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onListItemClick(String postId) {
+        Intent intent = new Intent(MainActivity.this, PostDetailActivity.class);
+        intent.putExtra("postid", postId);
+        startActivity(intent);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -110,70 +110,36 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
+        Intent intent;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+        switch (id) {
+            case R.id.nav_profile:
+                intent = new Intent(this, ProfileActivity.class);
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                intent.putExtra("uid", uid);
+                startActivity(intent);
+                return true;
+            case R.id.nav_create:
+                intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.nav_youtube:
+                intent = new Intent(this, YoutubeActivity.class);
+                intent.putExtra(YoutubeActivity.VIDEO_ID, "cxoEAN0Ew2Y");
+                startActivity(intent);
+                return true;
+            case R.id.nav_logout:
+                FirebaseAuth auth = FirebaseAuth.getInstance();                                         // Logs user out and launches LoginActivity
+                auth.signOut();
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                return true;
+        }
         return true;
     }
 
 
-
-    class PagerAdapter extends FragmentPagerAdapter {                                                   // Pager Adapter Class
-
-        String tabTitles[] = new String[] { "My Posts", "Nearby", "Favorites" };
-        Context context;
-
-        public PagerAdapter(FragmentManager fm, Context context) {
-            super(fm);
-            this.context = context;
-        }
-
-        @Override
-        public int getCount() {
-            return tabTitles.length;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-
-            switch (position) {
-                case 0:
-                    return new MyRecyclerViewFragment();
-                case 1:
-                    return new MyRecyclerViewFragment();
-                case 2:
-                    return new MyRecyclerViewFragment();
-            }
-
-            return null;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            // Generate title based on item position
-            return tabTitles[position];
-        }
-
-        public View getTabView(int position) {
-            View tab = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab, null);
-            TextView tv = (TextView) tab.findViewById(R.id.custom_text);
-            tv.setText(tabTitles[position]);
-            return tab;
-        }
-
-    }
 }

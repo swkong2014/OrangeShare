@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="16dp"
+
+    android:background="@android:color/white"
+    android:paddingStart="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reviewer Name"
+            android:id="@+id/review_name"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_alignParentTop="true"
+            android:paddingTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/review_title"
+            android:layout_below="@id/review_name"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:text="Review Title"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="3dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/review_description"
+            android:layout_below="@id/review_title"
+            android:textSize="14sp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur quam tincidunt, porttitor erat quis, dictum ipsum. Fusce euismod nibh id elit tincidunt hendrerit. Sed fringilla tellus ac tempus efficitur. Nam et est a leo blandit feugiat. Ut pharetra et felis ac semper. Ut nunc urna, consectetur ut viverra sit amet, congue in metus. Sed cursus lacinia luctus. Maecenas at consequat erat. Pellentesque tristique tincidunt magna, eu congue mi accumsan id. Aliquam erat volutpat."
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.1"
+            android:textIsSelectable="true"
+            android:id="@+id/review_stars"
+            style="?android:attr/ratingBarStyleSmall"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/review_question"
+            android:layout_below="@id/review_description"
+            android:paddingTop="8dp"
+            android:paddingStart="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:text="Would you eat with [insert name] again?"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/review_answer"
+            android:layout_toRightOf="@id/review_question"
+            android:text="YES"
+            android:textColor="@color/blue_primary"
+            android:textSize="16sp"
+            android:layout_alignBottom="@id/review_question"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:paddingTop="16dp"
+            />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
