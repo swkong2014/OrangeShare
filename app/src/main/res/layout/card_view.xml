@@ -28,7 +28,7 @@
             android:paddingStart="16dp"
             android:paddingTop="24dp"
             android:text="Title"
-            android:textColor="@color/blue_primary"
+            android:textColor="@color/blue_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
 

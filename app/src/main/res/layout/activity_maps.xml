@@ -4,35 +4,36 @@
     android:id="@+id/activity_map_two"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
-
+    android:paddingTop="8dp"
     tools:context="cis400.orangeshare.MapsActivity">
 
     <TextView
+        android:id="@+id/map_top_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/map_top_tv"
-        android:text="@string/map_click_text"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:layout_alignParentTop="true"/>
+        android:paddingBottom="8dp"
+        android:text="@string/map_click_text"
+        android:textColor="@color/orange_primary"
+        android:textSize="20sp" />
+
     <fragment
         android:id="@+id/maptwo"
-        android:layout_below="@id/map_top_tv"
+        android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_marginBottom="50dp"
-        />
+        android:layout_below="@id/map_top_tv"
+        android:layout_marginBottom="50dp" />
 
     <Button
+        android:id="@+id/btn_map_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_map_bottom"
-        android:text="Click to confirm location"
-
         android:layout_alignParentBottom="true"
-        />
+        android:background="@null"
+        android:textColor="@color/blue_dark"
+        android:text="Click to confirm location" />
 </RelativeLayout>

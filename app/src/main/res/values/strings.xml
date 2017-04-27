@@ -29,7 +29,7 @@
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCWUJj1HoOJYnalCqZjXWBZeDu5KCL-TMY</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec condimentum ante, quis mattis mi. Proin ut rhoncus libero, ac euismod neque. Ut suscipit, enim a facilisis consequat, orci lacus venenatis orci, at ultricies orci nulla sed ex. In condimentum viverra velit, eget feugiat libero imperdiet vel. Aenean pretium, lectus vitae bibendum bibendum, diam turpis convallis eros, quis tristique leo sapien at ipsum. Praesent eu odio id nulla lobortis auctor. Donec eget dolor eget nisl euismod commodo vel a lacus. Quisque ut justo vitae urna pharetra accumsan. Etiam dignissim neque iaculis mauris viverra, blandit rhoncus odio porttitor. Phasellus nibh arcu.</string>
-    <string name="map_click_text">Click the location of the Event</string>
+    <string name="map_click_text">First, click the location of the Event</string>
     <string name="nav_profile">View my Profile</string>
     <string name="nav_create_event">Create an Event</string>
     <string name="log_out">Log out</string>
@@ -38,6 +38,10 @@
     <string name="my_email">bwelsh@syr.edu</string>
     <string name="youtube_desc">This video demonstrates how to create Buffalo Chicken Mozzarella Sticks. The youtube channel that made this video is Tasty. They have an enormous amount of videos available for free on their channel! Just click the button below to view their channel in the Youtube application.</string>
     <string name="youtube_button">Click here to view Tasty\'s channel</string>
+
+    <string name="shortcut_create_short">Create..</string>
+    <string name="shortcut_create_long">Create a new Event</string>
+    <string name="shortcut_create_disabled">Create Event Disabled</string>
     <!--
         <string name="default_web_client_id">868295233623-dslb2us24sn44vjfff1imotmm6j4nqmn.apps.googleusercontent.com</string>
         -->

@@ -7,6 +7,7 @@
     android:elevation="10dp"
     android:paddingEnd="16dp"
     android:paddingTop="16dp"
+    android:paddingBottom="16dp"
 
     android:background="@android:color/white"
     android:paddingStart="16dp">
@@ -52,15 +53,17 @@
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="0.1"
+            android:numStars="6"
+            android:stepSize="1"
             android:textIsSelectable="true"
             android:id="@+id/review_stars"
             style="?android:attr/ratingBarStyleSmall"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"/>
+            android:progressTint="@color/blue_dark"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+           />
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,7 +74,8 @@
             android:paddingStart="16dp"
             android:textColor="@android:color/black"
             android:textSize="14sp"
-            android:text="Would you eat with [insert name] again?"
+            android:text="Would you eat with this person again?"
+            android:paddingBottom="16dp"
             />
 
         <TextView
@@ -80,12 +84,22 @@
             android:id="@+id/review_answer"
             android:layout_toRightOf="@id/review_question"
             android:text="YES"
-            android:textColor="@color/blue_primary"
+            android:textColor="@color/blue_dark"
             android:textSize="16sp"
             android:layout_alignBottom="@id/review_question"
             android:textStyle="bold"
             android:layout_marginLeft="16dp"
+            android:paddingBottom="16dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
             android:paddingTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_below="@id/review_answer"
             />
 
     </RelativeLayout>

@@ -84,6 +84,10 @@ public class MyFirebaseRecyclerViewAdapter extends FirebaseRecyclerAdapter<Post,
         }
     }
 
+    @Override
+    public Post getItem(int pos) {
+        return super.getItem(pos);
+    }
 
     public void setOnItemClickListener(final onItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;

@@ -7,13 +7,13 @@ package cis400.orangeshare;
 public class Review {
     String username, title, description, uid;
     Boolean eatAgain;
-    double rating;
+    int rating;
 
     public Review() {
         // empty constructor
     }
 
-    public Review(String username, String title, String description, String uid, Boolean eatAgain, double rating) {
+    public Review(String username, String title, String description, String uid, Boolean eatAgain, int rating) {
         this.username = username;
         this.title = title;
         this.description = description;
@@ -62,11 +62,11 @@ public class Review {
         this.eatAgain = eatAgain;
     }
 
-    public double getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 }

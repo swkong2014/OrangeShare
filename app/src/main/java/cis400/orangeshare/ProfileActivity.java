@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileActivity extends AppCompatActivity implements ProfileFragment.OnFragmentInteractionListener {
 
     User user;
+    String uid;
     final String TAG = "Profile Activity";
 
     @Override
@@ -31,10 +32,10 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
         setSupportActionBar(toolbar);
 
         Bundle bun = getIntent().getExtras();
-        String uid = (String) bun.get("uid");
+        uid = (String) bun.get("uid");
 
         ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
-        backdrop.setImageResource(R.drawable.ic_fruit_holder);
+        backdrop.setImageResource(R.drawable.ic_syr_holder);
 
         // TODO: FAB to text person (or email)
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.profile_fab);
@@ -75,6 +76,14 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
     }
 
     @Override
+    public void launchReview() {
+        Intent intent = new Intent(this, ReviewActivity.class);
+        intent.putExtra("name", user.getName());
+        intent.putExtra("uid", uid);
+        startActivity(intent);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.profile_menu, menu);
@@ -98,6 +107,13 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
                 intent.putExtra(Intent.EXTRA_SUBJECT, "subject");
                 intent.putExtra(Intent.EXTRA_TEXT, "mail body");
                 startActivity(Intent.createChooser(intent, ""));
+                return true;
+            case R.id.action_review:
+                intent = new Intent(this, ReviewActivity.class);
+                intent.putExtra("name", user.getName());
+                intent.putExtra("uid", uid);
+                startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

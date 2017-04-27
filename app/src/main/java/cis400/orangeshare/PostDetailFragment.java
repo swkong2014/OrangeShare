@@ -154,10 +154,12 @@ public class PostDetailFragment extends Fragment {
         if (postFavorites.containsKey(currentUid)) {
             // TODO: put code to change button view to checked
             btnFav.setChecked(true);
+            btnFav.setTextColor(getResources().getColor(R.color.blue_primary));
         }
         else {
             // TODO: put code to change button view to checked
             btnFav.setChecked(false);
+            btnFav.setTextColor(getResources().getColor(R.color.orange_primary));
         }
         btnFav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -181,10 +183,12 @@ public class PostDetailFragment extends Fragment {
                                 mDatabase.child("user-fav-posts").child(uid).child(key).removeValue();              // removes values at "user-fav-posts/$uid/$postid
                                 mDatabase.child("posts").child(key).child("favorites").child(uid).removeValue();    // removes values at "posts/$postid/favorites/$uid
                                 btnFav.setChecked(false);
+                                btnFav.setTextColor(getResources().getColor(R.color.orange_primary));
                             } else {
                                 btnFav.setChecked(true);
                                 post.favorites.put(uid, true);                                                      // adds uid to favorites of post
                                 childUpdates.put("/user-fav-posts/" + uid + "/" + key, postValues);                     // update values in "/user-posts/$uid/$postid"
+                                btnFav.setTextColor(getResources().getColor(R.color.blue_dark));
                             }
                             childUpdates.put("/posts/" + key + "/favorites/", post.favorites);
                             mDatabase.updateChildren(childUpdates);

@@ -145,7 +145,7 @@ public class MapsViewActivity extends AppCompatActivity implements
         setCurrentLocation(null, "Cannot get location info", "Check location permission and GPS setting");
 
         myGoogleMap.getUiSettings().setCompassEnabled(true);
-        myGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(20));
+        myGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int hasFineLocationPermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION);

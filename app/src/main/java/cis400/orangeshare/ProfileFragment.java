@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -68,6 +69,14 @@ public class ProfileFragment extends Fragment {
         number = (String) bun.get("number");
         TextView profileNumber = (TextView) rootView.findViewById(R.id.profile_number);
         profileNumber.setText(number);
+
+        Button btnReview = (Button) rootView.findViewById(R.id.btn_view_review);
+        btnReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.launchReview();
+            }
+        });
         return rootView;
     }
 
@@ -92,6 +101,6 @@ public class ProfileFragment extends Fragment {
 
 
     public interface OnFragmentInteractionListener {
-
+        public void launchReview();
     }
 }

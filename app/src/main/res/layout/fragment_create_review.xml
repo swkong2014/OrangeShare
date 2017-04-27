@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/create_review_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="cis400.orangeshare.CreateReviewFragment">
 
@@ -59,12 +60,101 @@
         android:textColor="@color/orange_primary"
         android:textCursorDrawable="@null" />
 
+    <TextView
+        android:id="@+id/tv_question_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="200dp"
+        android:layout_below="@id/create_title"
+        android:text="How would you rate this user?"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_question_rating"
+        android:paddingBottom="32dp"
+        android:paddingTop="16dp"
+        android:paddingStart="46dp"
+        android:id="@+id/radio_group_rating">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1        "
+            android:id="@+id/radio_one"
+            app:buttonTint="@color/blue_primary"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2        "
+            android:id="@+id/radio_two"
+            app:buttonTint="@color/blue_primary"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3        "
+            android:id="@+id/radio_three"
+            app:buttonTint="@color/blue_primary"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4        "
+            android:id="@+id/radio_four"
+            app:buttonTint="@color/blue_primary"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5        "
+            android:id="@+id/radio_five"
+            app:buttonTint="@color/blue_primary"
+            />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_question_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="50dp"
+        android:layout_below="@id/tv_question_rating"
+        android:text="Would you eat with this user again?"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_question_again"
+        android:paddingBottom="32dp"
+        android:paddingStart="46dp"
+        android:id="@+id/radio_group">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes        "
+            android:id="@+id/radio_yes"
+            app:buttonTint="@color/blue_primary"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No        "
+            android:id="@+id/radio_no"
+            app:buttonTint="@color/blue_primary"
+            />
 
     </RadioGroup>
 
@@ -74,7 +164,7 @@
         android:id="@+id/fab_submit_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/tv_question_again"
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         android:src="@drawable/ic_navigation_check_24"

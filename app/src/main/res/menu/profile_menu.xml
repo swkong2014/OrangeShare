@@ -10,6 +10,11 @@
         android:id="@+id/action_email"
         android:orderInCategory="200"
         android:title="Send Email"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_pencil"/>
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/action_review"
+        android:orderInCategory="300"
+        android:title="View or Write Reviews"
+        app:showAsAction="never"/>
 </menu>

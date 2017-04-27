@@ -61,7 +61,7 @@ public class ViewPagerFragment extends Fragment {
 
     class PagerAdapter extends FragmentPagerAdapter {                                                   // Pager Adapter Class
 
-        String tabTitles[] = new String[] { "My Posts", "Nearby", "Favorites" };
+        String tabTitles[] = new String[] { "My Posts", "Nearby", "Attending" };
         Context context;
 
         public PagerAdapter(FragmentManager fm, Context context) {

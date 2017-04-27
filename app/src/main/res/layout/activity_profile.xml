@@ -20,7 +20,7 @@
             app:title="User Profile"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/orange_primary"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
             >
             <ImageView
@@ -58,6 +58,7 @@
         android:layout_width="wrap_content"
         android:src="@android:drawable/ic_dialog_email"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/blue_primary"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end"
         android:clickable="true"/>
